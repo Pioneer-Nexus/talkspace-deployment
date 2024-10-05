@@ -1,6 +1,16 @@
 version: "3"
 
 services:
+  talkspace-backend:
+    image: hoanghy/talkspace-backend
+    volumes:
+      - mongo-data:/data/db
+      - ./docker/mongo/rs-init.sh:/scripts/mongo/rs-init.sh
+    ports:
+      - ${PORT}:9000
+    depends_on: 
+      - mongo
+
   mongo:
     image: mongo
     ports:
